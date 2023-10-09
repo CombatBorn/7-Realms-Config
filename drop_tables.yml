@@ -1,0 +1,38 @@
+drop tables:
+  default#soul_loot:
+    Type: multiple
+    Description: Default rate for a Soul drop.
+    Tables:
+      1.0:
+      # Soul
+      - 1
+  forest_realm_world_boss#collossal_skeleton:
+    Type: multiple
+    Description: Unique drops for the Collossal Skeleton World Boss.
+    Tables:
+      10.0:
+      # Bone Scythe
+      - 3
+  forest_realm_structure_boss#gem_golem:
+    Type: multiple
+    Description: Unique drops for the Gem Golem Structure Boss.
+    Tables:
+      100.0:
+      # Jade Kanda
+      - 4
+  forest_realm_world_boss#default:
+    Type: multiple
+    Description: Default drops for for World bosses within the Forest Realm.
+    Tables:
+      # 1/5
+      20.0:
+      # Seed of the Forest
+      - 5
+  forest_realm_structure_boss#default:
+    Type: multiple
+    Description: Structure Bosses in the Lost Woods Biome for the Forest Realm.
+    Tables:
+      # 1/1,000
+      0.1:
+      # Seed of the Forest
+      - 5

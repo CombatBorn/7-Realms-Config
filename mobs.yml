@@ -1,0 +1,296 @@
+mobs:
+  # this example displays the default settings
+  # if the mob you're making has the same settings, you do not need to add it in the config since it's already default
+  # however if it helps you by having them, go ahead: it won't impact performance!
+  # (!!!) NEVER CHANGE THIS MOB, ONLY USE AS REFERENCE (!!!)
+  '0':
+    # the entity's name
+    name: Example Mob
+    # the description for the mob
+    description: This will help people learn how to configure mobs.
+    # The ID of the weapon being held. If the model doesn't have a valid weapon slot or the id is set to -1: no weapon will appear.
+    held weapon: -1
+    # the biomes this mob can spawn in (lost_woods, stone_forest, plains, wet_woodlands, frozen_woods, burnt_forest, thick_forest)
+    biomes:
+    - lost_woods
+    # the type of mob this is classified as (typeless, draconic, golem, void)
+    type: typeless
+    # the move will be random based on weight, otherwise the moves will repeat in the same order
+    random moves: true
+    # passive = never attack, aggressive = always attack, defensive = only attack if provoked
+    aggression: aggressive
+    # how fast the mob moves, 0.0 is frozen
+    speed: 1.0
+    # how much knockback moves will apply to this mob, 0.0 means no knock back
+    knockback: 1.0
+    # the amount of mobs this mob is allowed to summon, -1 means no cap
+    summon cap: 0
+    # how the mob is displayed to players
+    display:
+      # the minecraft mob that represents this mob
+      entity: zombie
+      # only add if this is a ModelEngine mob
+      model: example_model
+      # normal_mob, structure_boss, world_boss, milestone_boss
+      boss type: normal_mob
+      # the unicode that represent this RealmMob's portrait
+      portrait: \u0000
+    # the stats given to this mob
+    stats:
+      # how much health the mob has
+      health: 10
+      # how many ticks it takes for the mob to use a new move
+      attack speed: 20
+      # determines how much physical damage the mob's moves will do
+      attack: 0
+      # the higher this is will be the less damage physical attacks deal against this mob
+      defence: 0
+      # determines how much magic damage the mob's moves will do
+      magic attack: 0
+      # the higher this is will be the less damage magic attacks deal against this mob
+      magic defence: 0
+    # a list of every move the mob knows by default
+    default moves:
+      # this move name must be found in Realm/mob_moves.yml
+      '0':
+        # more weight = more likely this move will occur if random moves = true
+        weight: 1
+        # add a cooldown to how often this mob will be able to do the move
+        cooldown: 0
+        # this mob will use a specified animation instead of the one defined within the move
+        override animation: example_animation
+      '1':
+        weight: 1
+        cooldown: 0
+    # a list of every rule the mob knows by default
+    default rules:
+      - example_rule
+    # each phase the mob has and what happens the first time the mob achieves this
+    phases:
+      # the first time the mob reaches this amount of health the following changes will occur
+      '50':
+        # change the mob's name
+        set name: Example Mob
+        # change the model of the mob
+        update model: example_model
+        # when this phase begins for the first time, this move will automatically be used
+        set start move: 0
+        # the move will be random based on weight, otherwise the moves will repeat in the same order
+        set random moves: false
+        # passive = never attack, aggressive = always attack, defensive = only attack if provoked
+        set aggression: passive
+        # add the ID of moves the mob can use
+        add moves:
+          # this move name must be found in Realm/mob_moves.yml
+          '0':
+            # more weight = more likely this move will occur if random moves = true
+            weight: 1
+            # add a cooldown to how often this mob will be able to do the move
+            cooldown: 0
+            # this mob will use a specified animation instead of the one defined within the move
+            override animation: example_animation
+        # the code will always attempt to remove moves before adding moves
+        remove moves:
+        # this move name must be found in Realm/mob_moves.yml
+        - 0
+        # add the ID of rules the mob will know
+        add rules:
+        # this move name must be found in Realm/mob_moves.yml
+        - example_rule
+        # the code will always attempt to remove rules before adding rules
+        remove rules:
+        - example_rule
+    # Each drop table that gets rolled upon this mob dying
+    drop tables:
+    - default#soul_loot
+  '1':
+    name: Gem Golem
+    description: There are purple colored gems embedded in the Golem's back. This NPC will throw players into the air, move slowly, and smash the ground to deal damage.
+    biomes:
+    - stone_forest
+    random moves: true
+    aggression: aggressive
+    speed: 0.0
+    summon cap: 3
+    display:
+      entity: zombie
+      model: gem_golem
+      boss type: structure_boss
+      portrait: \uf000
+    stats:
+      health: 325
+      attack speed: 15
+      attack: 3
+      defence: 20
+      magic attack: 0
+      magic defence: -5
+    default moves:
+      2:
+        weight: 1
+    default rules:
+      - example_rule
+    phases:
+      '50':
+        set name: Enraged Gem Golem
+        update model: GemGolem2
+        set start move: 3
+        add moves:
+          4:
+            weight: 1
+            cooldown: 0
+        remove moves:
+        - 2
+    drop tables:
+    - forest_realm_structure_boss#default
+    - forest_realm_structure_boss#gem_golem
+    - default#soul_loot
+  '2':
+    name: Giant Skeleton
+    description: The daddy Skeleton.
+    biomes:
+    - thick_forest
+    random moves: true
+    aggression: aggressive
+    speed: 0.0
+    display:
+      entity: zombie
+      model: giant_skeleton
+      boss type: world_boss
+      portrait: \uf001
+    stats:
+      health: 2000
+      attack speed: 20
+      attack: 10
+      defence: 50
+      magic attack: 10
+      magic defence: 100
+    default moves:
+      2:
+        weight: 1
+    drop tables:
+    - forest_realm_world_boss#default
+    - forest_realm_world_boss#collossal_skeleton
+    - default#soul_loot
+  '3':
+    name: Naga
+    description: Woman of the Swamp.
+    biomes:
+    - wet_woodlands
+    random moves: true
+    aggression: aggressive
+    speed: 0.0
+    display:
+      entity: skeleton
+      model: naga
+      boss type: structure_boss
+      portrait: \uf002
+    stats:
+      health: 250
+      attack speed: 10
+      attack: 5
+      defence: 0
+      magic attack: 15
+      magic defence: 25
+    default moves:
+      2:
+        weight: 1
+    drop tables:
+    - default#soul_loot
+    - forest_realm_structure_boss#default
+  '4':
+    name: Baby Golem
+    description: The baby version of the Gem Golem.
+    biomes:
+    - stone_forest
+    random moves: true
+    aggression: aggressive
+    speed: 0.0
+    display:
+      entity: zombie
+      model: baby_golem
+      boss type: normal_mob
+      portrait: \uf000
+    stats:
+      health: 20
+      attack speed: 20
+      attack: 1
+      defence: 12
+      magic attack: 0
+      magic defence: -2
+    default moves:
+      2:
+        weight: 3
+    phases:
+      '0':
+        set start move: 5
+    drop tables:
+    - default#soul_loot
+  '5':
+    name: Sugnuf, King of Fungus
+    description: He who rules the Fungus.
+    biomes:
+    - lost_woods
+    random moves: true
+    speed: 0.0
+    display:
+      entity: zombie
+      model: sugnuf_king_of_fungus
+      boss type: structure_boss
+      portrait: \uf003
+    stats:
+      health: 2048
+      attack: 10
+    default moves:
+      2:
+        weight: 1
+    drop tables:
+    - default#soul_loot
+    - forest_realm_structure_boss#default
+  '6':
+    name: Posiedon
+    description: He who rules the Sea.
+    random moves: true
+    speed: -0.25
+    display:
+      entity: zombie
+      model: posiedon
+      boss type: structure_boss
+      portrait: \uf000
+    stats:
+      health: 500
+      attack: 5
+    default moves:
+      2:
+        weight: 1
+  '7':
+    name: Nut Snapper
+    description: This will snap exclusively at nuts.
+    random moves: true
+    speed: -0.25
+    display:
+      entity: zombie
+      model: nut_snapper
+      boss type: structure_boss
+      portrait: \uf000
+    stats:
+      health: 100
+      attack: 3
+    default moves:
+      2:
+        weight: 1
+  '8':
+    name: Giant Ent
+    description: An Ent that is giant.
+    random moves: true
+    speed: -0.25
+    display:
+      entity: zombie
+      model: giant_ent
+      boss type: structure_boss
+      portrait: \uf000
+    stats:
+      health: 200
+      attack: 5
+    default moves:
+      2:
+        weight: 1

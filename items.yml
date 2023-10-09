@@ -1,0 +1,103 @@
+items:
+  # Ths Unique Identification number that represents this item.
+  '0':
+    # The name given to this item.
+    name: Default Item
+    # The description for this item.
+    description: This is the first weapon ever created.
+    # The Mineccraft item this is associated with.
+    material: wooden_sword
+    # The custom model data attached to this item, -1 means there's no custom model data
+    custom model data: 1
+    # The rarity of this item: common, uncommon, rare, epic, legendary, mythic
+    rarity: common
+    # Whether the item is enchanted.
+    enchanted: false
+    # The stats this item has.
+    stats:
+      # Increases the user's maximum health by this amount.
+      Health: 0
+      # How frequently this item can be used.
+      attack speed: 30
+      # When attacking enemies, the user of this item utilizes this stat to determine physical damage dealt.
+      attack: 0
+      # When being attacked by enemies, the user of this item utilizes this stat to determine physical damage taken.
+      defence: 0
+      # When attacking enemies, the user of this item utilizes this stat to determine magical damage dealt.
+      magic attack: 0
+      # When being attacked by enemies, the user of this item utilizes this stat to determine magical damage taken.
+      magic defence: 0
+      # When attacking enemies, the user of this item utilizes this stat to determine the damage dealt when a critical strike occurs.
+      critical multiplier: 0.0
+      # When attacking enemies, the user of this item utilizes this stat to determine the odds of a critical strike occuring.
+      critical chance: 0.0
+    # A list of attributes applied to this item.
+    attributes:
+    - SOUL_PROTECTION
+    # A list of effects applied to this item.
+    effects:
+    - ETERNAL_SOUL
+  '1':
+    name: Soul
+    description: A powerful force within prevents items from being sent to the HUB upon death.
+    material: AMETHYST_SHARD
+    custom model data: -1
+    rarity: RARE
+    attributes:
+    - SOUL_PROTECTION
+  '2':
+    name: Godsword
+    description: This is the first weapon ever created.
+    material: WOODEN_SWORD
+    custom model data: 1
+    rarity: MYTHIC
+    stats:
+      attack speed: 1
+      attack: 999
+      defence: 999
+      magic attack: 999
+      magic defence: 999
+      critical multiplier: 999.0
+      critical chance: 100.0
+    attributes:
+    - SOUL_PROTECTION
+  '3':
+    name: Bone Scythe
+    description: Created with the bones of a thousands Baby Skeleton.
+    material: IRON_AXE
+    custom model data: 1
+    rarity: EPIC
+    stats:
+      attack speed: 8
+      attack: 25
+      magic attack: -2
+      critical chance: 5.0
+      critical multiplier: 5.0
+    attributes:
+    - UNTRADABLE
+    - SOUL_PROTECTION
+  '4':
+    name: Jade Kanda
+    description: A lightweight sword crafted from the very gems of Gem Golems.
+    material: WOODEN_SWORD
+    custom model data: 2
+    rarity: RARE
+    stats:
+      attack speed: 6
+      attack: 12
+      magic attack: -2
+      critical chance: 10.0
+      critical multiplier: 2.0
+  '5':
+    name: Seed of the Forest
+    description: Planted within the Forest Realm and grows into random loot, after 10 days.
+    material: WHEAT_SEEDS
+    custom model data: 1
+    rarity: LEGENDARY
+  '6':
+    name: Chicken Pecker
+    description: A weapon crafted by a fox from the remains of their first prey.
+    material: IRON_AXE
+    custom model data: 2
+    rarity: LEGENDARY
+    enchanted: false

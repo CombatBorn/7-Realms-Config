@@ -1,0 +1,454 @@
+moves:
+  # (!!!) NEVER CHANGE THIS MOVE, ONLY USE AS REFERENCE (!!!)
+  '0':
+    # the name assigned to this move
+    name: Default Move Settings
+    # how many Game Ticks before the mob should attempt it's next move
+    attack speed: 0
+    # the mob will move around until a target is found before using their move, otherwise the move will begin immediately
+    require target: true
+    # when the mob dies, this specified mobs will spawn at the mob's location
+    reincarnations:
+    - 0
+    # prevents the mob from moving while doing it's move
+    freeze during move: false
+    # find a list of targets based on the potential target's type, radius, name, etc.
+    valid targets:
+      # list of what can be targeted by this move
+      types:
+      - PLAYER
+      - MOB
+      - OBJECT
+      # mobs that were summoned by this mob
+      - SUMMONED
+      # objects that were spawned by this mob
+      - SPAWNED
+      # this mob will be one of the targets of this move
+      - SELF
+      
+      # the distance in blocks around the mob that targets must be within to be valid, -1.0 means the radius will be set to the default value of 8.0, 16.0 is the max
+      radius: 6.0
+      # the duraion in Game Ticks that the mob will continue looking for a valid target, -1 means it won't stop looking until a valid target is found
+      giveup: -1
+      # the targets can't evade this move once the targets are found
+      lock: false
+      # the target must have one of these names to be considered valid
+      names:
+      - null
+      # maximum amount of targets there can be, -1 means there's no limit
+      max targets: -1
+      # only applicable if max targets is greater than 1, determine which of the selected targets within the radius will receive the effect of this move (NEAREST, FURTHEST, MOST_HEALTH, LEAST_HEALTH, STRONGEST, WEAKEST, RANDOM)
+      sort: null
+    
+    # the amount of damage this move will deal
+    damage:
+      # how many Game Ticks before the damage is applied after a target is found (unless there's no target required)
+      delay: 0
+      # how much knockback the move will apply after the delay
+      knockback: 0.0
+      # attack and magic attack will be based on the mob's stats
+      use mob stats: false
+      # how much damage the move will do at a minimum
+      attack: 0
+      # how much damage the move will do at a maximum
+      magic attack: 0
+      # how much healing the move will apply
+      heal: 0
+      # the move ignores defence
+      pierce: false
+      # how much force this move will cause the targets to be pushed into the air
+      bounce: 0.0
+    # if a target is required and found the move animation will begin, or it will simply beign if there's no target required
+    animation:
+      # the name of the animation to play when the move is used, (only needed if name of move is different from animation name)
+      name: null
+      # how many Game Ticks before the animation begins after the target is found if applicable, -1 means no animation will play
+      delay: 20
+      # whether or not the animation should repeat until the move completes
+      repeat: false
+
+    # change the stats of each target when this move is used
+    buffs:
+      # This determines if the buff will contain positive values or negative values.
+      type: BUFF
+      # how many Game Ticks the buff will last. the buff will be removed immediately if the mob no longer knows this move
+      duration: -1
+      # increase or decrease the time it takes to use a move (multiplied by modifiers)
+      move cooldown: 0
+      # the maximum modifier allowed to each stat. This number should never be negative, even for debuffs.
+      max modifier: 2.0
+      # the buff should change based on if these options are true
+      modifiers:
+      # when this move is used the buff amount will multiply each stat for every player this mob defeated
+      - players_defeated
+      # when this move is used the buff amount will multiply each stat for the total amount of mob that's alive which this mob summoned
+      - alive_summoned_mobs
+      # when this move is used the buff amount will multiply each stat for the total amount of mobs this mob has summoned
+      - summoned_mobs
+      # when this move is used the buff amount will multiply each stat for the total amount of kills this mob's summoned mobs have earned
+      - summons_kills
+      # when this move is used the buff amount will multiply each stat for the total amount of mobs this mob has summoned that have died
+      - summons_deaths
+      # when this move is used the buff amount will multiply each stat for the total amount of players that dealt damage to this mob
+      - players_attacked
+      # when this move is used the buff amount will multiply each stat for the total amount of minutes this mob has existed in the world
+      - minutes_alive
+      # when this move is used the buff amount will multiply each stat for the total amount of minutes the fight has lasted
+      - fight_duration
+      # when this move is used the buff amount will multiply each stat for the total amount of percent health that this mob has lost
+      - health_removed
+      # when this move is used the buff amount will multiply each stat for the total amount of this move has been used during the fight
+      - reused_move
+      # the buff/debuff applied by this move
+      stats:
+        # increase the mob's max health stat (multiplied by modifiers)
+        health: 0
+        # increase the mob's speed stat (multiplied by modifiers)
+        attack speed: 0
+        # increase the mob's attack stat (multiplied by modifiers)
+        attack: 0
+        # increase the mob's magic attack stat (multiplied by modifiers)
+        magic attack: 0
+        # increase the mob's defence stat (multiplied by modifiers)
+        defence: 0
+        # increase the mob's magic defence stat (multiplied by modifiers)
+        magic defence: 0
+        # increase the mob's critical multiplier stat (multiplied by modifiers)
+        critical multiplier: 0.0
+        # increase the mob's critical chance stat (multiplied by modifiers)
+        critical chance: 0.0
+      
+    # the move's effects will repeat
+    linger:
+      # how many Game Ticks before the linger effect will begin
+      delay: 0
+      # how many Game Ticks before the effect should occur again
+      speed: 20
+      # the amount of times the linger will occur, -1 means the linger will last while the mob is active OR until the mob no longer knows this move)
+      repeat: 1
+    # summon mobs at the targeted locations
+    summon:
+      # a list of mob ID numbers to summon
+      mobs:
+        # how many of the mob should be summoned for each id
+        1: -1
+      # the amount of Game Ticks between each mob spawning in
+      speed: 0
+      # summon the mobs as evenly as possible between targeted locations, otherwise summon the mobs randomly between targeted locations
+      even distribution: true
+      # the mob summons at random locations within this radius in realitive to the planned summon location (doesn't include height)
+      random offset radius: 0.75
+      # apply all stat buffs of this move to each summoned mob
+      apply buffs: false
+      # the distance the summoned mob can travel from it's spawnpoint before being teleported back to the spawnpoint
+      max distance: 10.0
+    # spawn objects at the targeted locations
+    spawn:
+      # a list of object ID numbers to spawn
+      objects:
+        # how many of the mob should be spawned for each id
+        1: -1
+      # the amount of Game Ticks between each object spawning in, 0 will instantly spawn all mobs
+      speed: 0
+      # spawn the mobs randomly between targets, otherwise spawn the mobs as evenly as possible between targets
+      even distribution: true
+      # shoot each object as a projectile toward each targeted location
+      projectile:
+        # if a valid target is within this radius the target will receive the effects of this move
+        hitbox: 0.5
+        # the projectile will use the move's effects on valid targets upon initial impact, otherwise the effect will ONLY occur at the targeted locations
+        hit: true
+        # despawn the projectile if it hits a valid target
+        hit destroy: false
+        # the projectile will stick onto the first valid target it hits
+        hit sticky: false
+        # how fast each projectile will fly through the air (SLOW, NORMAL, FAST, FAST_THEN_SLOW, SLOW_THEN_FAST)
+        movement: NORMAL
+        # the angle that the projectile will fly through the air (left and right will cancel each other out, do not add an angle if you want the projectile to fly straight)
+        angles:
+        - LEFT
+        - RIGHT
+        - UP
+        - DOWN
+        # This defines where the projectile will spawn at when this move is used in realitive to the direction the mob's facing starting from the mob's feet
+        orientation:
+          # the projectile will spawn at the specified orientation, however it will be randomly offset by this radius
+          random radius: 0.0
+          # the distance from the mob in blocks in the x axis relative to the direction the mob is facing (side to side).
+          x: 0.0
+          # the distance from the mob in blocks in the y axis relative to the direction the mob is facing (feet to head).
+          y: 2.0
+          # the distance from the mob in blocks in the z axis relative to the direction the mob is facing (front to back).
+          z: 0.0
+
+    # change the mob using this move's appearance, only one of these options can be set
+    transform:
+      # types can be `mob` or `object`
+      type: MOB
+      # this only applies to the `mob` type, morph the mob into another mob completely 
+      morph: -1
+      # change the mob's model to this, null means do nothing
+      update model: null
+
+    # a list of particle effects that occur at specified locations as a move gets used
+    particle effects:
+      # the name of a particle effect
+      '1':
+        # the particle used for the effect, null means no particle effects, found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Particle.html
+        particle: ASH
+        # which animation should be used (standard, explosion, ring, sphere, flames)
+        gfx: STANDARD
+        # where the particle effect should occur
+        locations:
+        - TARGETS
+        - SUMMONED
+        - SPAWNED
+        - SELF
+        # how many Game Ticks wait before the particle plays after the move effect occurs
+        delay: 0
+        # how many times the particle effect should repeat
+        repeat: 0
+        # how many Game Ticks apart each repeated particle effect will play at
+        speed: 20
+        # how many blocks the effect should reach
+        size: 1.0
+        # how many particles should be used
+        amplify: 1.0
+    # a list of sound effects that occur at specified locations as a move gets used
+    sound effects:
+      # the name of a sound effect
+      '1':
+        # the sound used, null means no sound effects, found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+        sound: BLOCK_BELL_USE
+        # where the particle effect should occur
+        locations:
+        - TARGETS
+        - SUMMONED
+        - SPAWNED
+        - SELF
+        # how many Game Ticks wait before the sound plays
+        delay: 0
+        # how many times the sound effect should repeat
+        repeat: 1
+        # how many Game Ticks apart each repeated sound effect will play at
+        speed: 20
+        # the volume of the sound effect
+        volume: 1.0
+        # the pitch of the sound effect
+        pitch: 1.0
+  '1':
+    name: Test Move
+    attack speed: 20
+    require target: false
+    reincarnations:
+    - 1
+    - 2
+    - 3
+    freeze during move: true
+    valid targets:
+      types:
+      - PLAYER
+      - SELF
+      radius: 3.0
+      giveup: 23
+      lock: true
+      names:
+      - abc123
+      max targets: 3
+      sort: RANDOM
+    damage:
+      delay: 1
+      knockback: 2.0
+      attack: 3
+      magic attack: 4
+      heal: 5
+      pierce: true
+    animation:
+      name: Test
+      delay: 1
+      repeat: true
+    buffs:
+      type: DEBUFF
+      duration: 333
+      move cooldown: 10
+      max modifier: 322.0
+      modifiers:
+      - players_defeated
+      - reused_move
+      stats:
+        health: 1
+        attack speed: 2
+        attack: 3
+        magic attack: 4
+        defence: 5
+        magic defence: 6
+        critical multiplier: 7.0
+        critical chance: 8.0
+    linger:
+      delay: 1
+      speed: 2
+      repeat: 3
+    summon:
+      mobs:
+        1: 33
+        2: 1
+      speed: 1
+      even distribution: false
+      random offset radius: 1.75
+      apply buffs: true
+      max distance: 13.0
+    spawn:
+      objects:
+        1: 1
+        223: 2
+      speed: 1
+      even distribution: false
+      projectile:
+        hitbox: 1.5
+        hit: false
+        hit destroy: true
+        hit sticky: true
+        movement: SLOW
+        angles:
+        - UP
+        - DOWN
+        orientation:
+          random radius: 4.0
+          x: 3.0
+          y: 3.0
+          z: 3.0
+    transform:
+      type: OBJECT
+      morph: 1
+      update model: Testeroni
+    particle effects:
+      '1':
+        particle: CRIT_MAGIC
+        gfx: EXPLOSION
+        locations:
+        - TARGETS
+        - SUMMONED
+        delay: 11
+        repeat: 12
+        speed: 13
+        size: 14.0
+        amplify: 15.0
+      '2':
+        particle: CRIT
+        gfx: RING
+        locations:
+        - SPAWNED
+        - SELF
+        delay: 23
+        repeat: 24
+        speed: 25
+        size: 14.0
+        amplify: 15.0
+    sound effects:
+      '1':
+        sound: BLOCK_ENDER_CHEST_OPEN
+        locations:
+        - TARGETS
+        - SUMMONED
+        delay: 44
+        repeat: 45
+        speed: 46
+        volume: 47.0
+        pitch: 48.0
+      '2':
+        sound: BLOCK_BAMBOO_STEP
+        locations:
+        - SPAWNED
+        - SELF
+        delay: 33
+        repeat: 34
+        speed: 35
+        volume: 36.0
+        pitch: 37.0
+  '2':
+    name: Attack
+    attack speed: 15
+    require target: true
+    damage:
+      delay: 12
+      knockback: 0.25
+      use default stats: true
+    valid targets:
+      radius: 3.6
+      types:
+      - player
+    particle effects:
+      '1':
+        particle: BLOCK_DUST
+        gfx: ring
+        locations:
+        - mob
+        delay: 30
+        amplify: 0.0
+        size: 4.0
+        duration: 20
+    sound effects:
+      '1':
+        sound: object_IRON_GOLEM_DAMAGE
+        locations:
+        - mob
+        delay: 30
+        repeat: 4
+        repeat delay: 2
+        pitch: 0.15
+  '3':
+    name: Smash
+    attack speed: 22
+    require target: false
+    freeze during move: true
+    damage:
+      attack: 15
+      delay: 22
+    animation:
+      name: smash
+    valid targets:
+      types:
+      - player
+      radius: 5.0
+      '1':
+        sound: object_IRON_GOLEM_DAMAGE
+        locations:
+        - mob
+        delay: 30
+        repeat: 4
+        repeat delay: 2
+        pitch: 0.15
+      '1':
+        sound: object_IRON_GOLEM_DAMAGE
+        locations:
+        - mob
+        delay: 30
+        repeat: 4
+        repeat delay: 2
+        pitch: 0.15
+  '4':
+    name: Summon
+    attack speed: 200
+    require target: false
+    summon:
+      mobs:
+        4: 1
+      speed: 0
+      even distribution: true
+      random offset radius: 2.0
+      apply buffs: false
+      max distance: 10.0
+  '5':
+    name: Death Summoner Buff
+    attack speed: 0
+    require target: false
+    valid targets:
+      types:
+      - SUMMONER
+      radius: 16.0
+      lock: true
+    buffs:
+      type: BUFF
+      move cooldown: 0
+      stats:
+        attack: 5

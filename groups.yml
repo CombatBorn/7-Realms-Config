@@ -1,0 +1,16 @@
+groups:
+  4bd2c67d-8f89-4dd8-89e7-727ba418d203:
+    Name: Test Group
+    Acronym: TG
+    Description: Test Description.
+    Settings:
+    - NPC_LOOT_SHARE
+    Permissions:
+      MEMBER:
+      - TELEPORT_TO_STRUCTURES
+      OFFICER:
+      - KICK_MEMBER
+    Members:
+      069a79f4-44e9-4726-a5be-fca90e38aaf5:
+        Rank: LEADER
+        Name: Notch
