@@ -118,7 +118,7 @@ mobs:
       boss type: structure_boss
       portrait: \uf000
     stats:
-      health: 4000
+      health: 400
       attack speed: 15
       attack: 3
       defence: 20
