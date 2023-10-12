@@ -13,6 +13,9 @@ drop tables:
       10.0:
       # Bone Scythe
       - 3
+      100.0:
+      # Soul
+      - 1
   forest_realm_structure_boss#gem_golem:
     Type: multiple
     Description: Unique drops for the Gem Golem Structure Boss.
