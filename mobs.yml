@@ -158,7 +158,7 @@ mobs:
       boss type: world_boss
       portrait: \uf001
     stats:
-      health: 2150
+      health: 1820
       attack speed: 20
       attack: 10
       defence: 50
