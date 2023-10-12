@@ -16,6 +16,7 @@ drop tables:
       100.0:
       # Soul
       - 1
+      - 2
   forest_realm_structure_boss#gem_golem:
     Type: multiple
     Description: Unique drops for the Gem Golem Structure Boss.
